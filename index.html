@@ -2,35 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hier-SLAM++ — Presentation by Aamna Alshehhi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hier-SLAM++ — Presentation | Aamna Alshehhi</title>
   <meta name="description" content="Presentation website for Hier-SLAM++: Neuro-Symbolic Semantic SLAM with Hierarchical Gaussian Splatting." />
-  <meta name="theme-color" content="#0f172a" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#0b1020" />
+
   <style>
     :root{
-      --bg:#0b1020; --panel:#111735; --muted:#9aa4c3; --text:#e6ecff; --brand:#7c9cff; --accent:#a6f0ff; --border:#25305a;
-      --bg-light:#ffffff; --text-dark:#0b1020; --muted-dark:#5b678a; --panel-light:#f6f7fb; --border-light:#e7ebf5; --brand-dark:#3b5bdd;
+      --bg:#0b1020; --text:#e6ecff; --muted:#9aa4c3; --panel:#111735; --border:#25305a;
+      --btn-bg:#1e2a4a; --btn-border:#3b4c7a; --btn-hover:#314a80; --accent:#a6f0ff;
     }
     body{
-      margin:0; font-family:Inter,system-ui; background:var(--bg); color:var(--text);
+      margin:0; font-family:system-ui,Inter,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg); color:var(--text); line-height:1.55;
     }
-    body.light{ background:var(--bg-light); color:var(--text-dark); }
-    a{ color:var(--accent); text-decoration:none }
-    .container{ max-width:1000px; margin:auto; padding:24px }
-    header{
-      display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px;
-      border-bottom:1px solid var(--border); padding-bottom:16px;
+    .container{max-width:920px; margin-inline:auto; padding:24px}
+    header{text-align:center; margin-bottom:16px}
+    h1{margin:0 0 5px; font-size:clamp(22px,3.5vw,32px)}
+    .sub{margin:0; color:var(--muted); font-size:15px}
+    .panel{
+      background:rgba(21,32,70,.9); border:1px solid var(--border); border-radius:14px; padding:14px;
     }
-    body.light header{ border-bottom:1px solid var(--border-light); }
-    .title{ font-size:clamp(22px,3vw,32px); font-weight:800; }
-    .tag{ padding:4px 10px; border:1px solid var(--border); border-radius:999px; font-size:12px; color:var(--muted) }
-    body.light .tag{ border-color:var(--border-light); color:var(--muted-dark)}
+    .video-wrap{border-radius:10px; overflow:hidden; border:1px solid var(--border)}
+    video{width:100%; aspect-ratio:16/9; background:#000}
     .btn{
-      padding:10px 14px; border-radius:12px; border:1px solid var(--border);
-      background:rgba(124,156,255,.1); font-weight:600; color:var(--text);
+      display:inline-block; margin-top:18px; padding:12px 18px; border-radius:10px;
+      background:var(--btn-bg); border:1px solid var(--btn-border);
+      color:var(--accent); font-weight:700; text-decoration:none; transition:.2s;
     }
-    body.light .btn{ background:#fff; border-color:var(--border-light); color:var(--text-dark) }
-    main{ display:grid; grid-template-columns:1fr; gap:24px; margin-top:20px }
-    @media (min-width:960px){ main{ grid-template-columns:1.3fr .7fr
+    .btn:hover{background:var(--btn-hover)}
+    footer{text-align:center; margin:26px 0 6px; font-size:12px; color:var(--muted)}
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <header>
+    <h1>Hier-SLAM++ — Presentation</h1>
+    <p class="sub">ELEN755 — Cognitive Robotics | Aamna Alshehhi</p>
+  </header>
+
+  <main class="panel">
+    <div class="video-wrap">
+      <video controls preload="metadata" poster="assets/thumbnail.jpg">
+        <source src="assets/presentation.mp4" type="video/mp4" />
+        Your browser does not support video playback. 
+        <a href="assets/presentation.mp4">Download video</a>.
+      </video>
+    </div>
+
+    <p style="text-align:center">
+      <a class="btn" href="assets/Article_Analysis.pptx" download>📂 Download Slides</a>
+    </p>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Aamna Alshehhi — Hier-SLAM++
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
