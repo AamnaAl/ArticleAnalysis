@@ -6,13 +6,6 @@
   <title>Hier-SLAM++ — Presentation by Aamna Alshehhi</title>
   <meta name="description" content="Presentation website for Hier-SLAM++: Neuro-Symbolic Semantic SLAM with Hierarchical Gaussian Splatting." />
   <meta name="theme-color" content="#0f172a" />
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Hier-SLAM++ — Presentation by Aamna Alshehhi" />
-  <meta property="og:description" content="Neuro-Symbolic Semantic SLAM with Hierarchical Gaussian Splatting — talk, slides, and resources." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/thumbnail.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
@@ -20,179 +13,24 @@
       --bg:#0b1020; --panel:#111735; --muted:#9aa4c3; --text:#e6ecff; --brand:#7c9cff; --accent:#a6f0ff; --border:#25305a;
       --bg-light:#ffffff; --text-dark:#0b1020; --muted-dark:#5b678a; --panel-light:#f6f7fb; --border-light:#e7ebf5; --brand-dark:#3b5bdd;
     }
-    html,body{height:100%}
     body{
-      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;
-      background:var(--bg); color:var(--text); line-height:1.6;
+      margin:0; font-family:Inter,system-ui; background:var(--bg); color:var(--text);
     }
-    .light body, body.light{ background:var(--bg-light); color:var(--text-dark); }
+    body.light{ background:var(--bg-light); color:var(--text-dark); }
     a{ color:var(--accent); text-decoration:none }
-    a:hover{ text-decoration:underline }
-    .container{ max-width:1000px; margin-inline:auto; padding:24px }
+    .container{ max-width:1000px; margin:auto; padding:24px }
     header{
-      display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px;
       border-bottom:1px solid var(--border); padding-bottom:16px;
     }
     body.light header{ border-bottom:1px solid var(--border-light); }
-    .title{ font-size:clamp(22px,3vw,32px); font-weight:800; letter-spacing:.2px }
-    .tag{ display:inline-block; padding:4px 10px; border:1px solid var(--border); border-radius:999px; color:var(--muted); font-size:12px }
+    .title{ font-size:clamp(22px,3vw,32px); font-weight:800; }
+    .tag{ padding:4px 10px; border:1px solid var(--border); border-radius:999px; font-size:12px; color:var(--muted) }
     body.light .tag{ border-color:var(--border-light); color:var(--muted-dark)}
     .btn{
-      display:inline-flex; gap:8px; align-items:center; padding:10px 14px; border-radius:12px; border:1px solid var(--border);
-      background:linear-gradient(180deg, rgba(124,156,255,.08), rgba(124,156,255,.03));
-      color:var(--text); text-decoration:none; font-weight:600; transition:.2s;
+      padding:10px 14px; border-radius:12px; border:1px solid var(--border);
+      background:rgba(124,156,255,.1); font-weight:600; color:var(--text);
     }
-    .btn:hover{ transform:translateY(-1px); box-shadow:0 6px 24px rgba(124,156,255,.15) }
-    body.light .btn{ color:var(--text-dark); background:#fff; border-color:var(--border-light) }
+    body.light .btn{ background:#fff; border-color:var(--border-light); color:var(--text-dark) }
     main{ display:grid; grid-template-columns:1fr; gap:24px; margin-top:20px }
-    @media (min-width:960px){ main{ grid-template-columns:1.3fr .7fr } }
-    .panel{
-      background:linear-gradient(180deg, rgba(18,26,56,.85), rgba(16,23,46,.85)); border:1px solid var(--border); border-radius:18px; padding:16px 16px 10px;
-    }
-    body.light .panel{ background:var(--panel-light); border-color:var(--border-light) }
-    h2{ margin:0 0 12px; font-size:18px; letter-spacing:.2px }
-    .video-wrap{ position:relative; border-radius:14px; overflow:hidden; aspect-ratio:16/9; background:#000; border:1px solid var(--border)}
-    body.light .video-wrap{ border-color:var(--border-light) }
-    video{ width:100%; height:100%; display:block; background:#000 }
-    .meta{ display:flex; gap:10px; flex-wrap:wrap; margin-top:6px }
-    .grid{ display:grid; gap:12px }
-    .grid.two{ grid-template-columns:1fr 1fr }
-    .card{
-      border:1px solid var(--border); border-radius:14px; padding:12px 14px; background:rgba(255,255,255,0.02)
-    }
-    body.light .card{ background:#fff; border-color:var(--border-light) }
-    ul{ margin:8px 0 0 18px }
-    footer{ margin:28px 0 12px; font-size:12px; color:var(--muted) }
-    .switch{ cursor:pointer; border:1px solid var(--border); padding:8px 12px; border-radius:10px; color:var(--muted); background:transparent }
-    body.light .switch{ border-color:var(--border-light); color:var(--muted-dark) }
-    .kbd{ border:1px solid currentColor; padding:2px 6px; border-radius:6px; font-size:12px; opacity:.8 }
-    .small{ font-size:13px; color:var(--muted) }
-    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
-    .success{ color:#67f3b5 }
-    .warning{ color:#ffd36e }
-    .error{ color:#ff7d7d }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div>
-        <div class="title">Hier-SLAM++ — Presentation</div>
-        <div class="meta">
-          <span class="tag">Cognitive Robotics</span>
-          <span class="tag">ELEN755</span>
-          <span class="tag">Aamna Alshehhi</span>
-        </div>
-      </div>
-      <div style="display:flex; gap:10px; align-items:center">
-        <button id="themeBtn" class="switch" title="Toggle theme" aria-pressed="false">🌗 Theme</button>
-        <a class="btn" href="#" id="shareBtn" title="Copy share URL">🔗 Share</a>
-        <a class="btn" href="assets/Article_Analysis.pptx" download>⬇️ Download Slides</a>
-      </div>
-    </header>
-
-    <main>
-      <!-- Left column -->
-      <section class="panel">
-        <h2>Presentation Video</h2>
-        <div class="video-wrap">
-          <!-- Put your video at assets/presentation.mp4 (H.264/AAC recommended) -->
-          <video id="talk" controls preload="metadata" poster="assets/thumbnail.jpg" playsinline>
-            <source src="assets/presentation.mp4" type="video/mp4" />
-            <!-- Optional captions: upload a WebVTT file at assets/captions.vtt -->
-            <track kind="subtitles" src="assets/captions.vtt" srclang="en" label="English (CC)" default>
-            Your browser does not support the HTML5 video tag. You can <a href="assets/presentation.mp4">download the video</a> instead.
-          </video>
-        </div>
-        <div class="small" style="margin-top:8px">
-          Tip: Press <span class="kbd">F</span> for fullscreen • <span class="kbd">←</span>/<span class="kbd">→</span> to skip
-        </div>
-      </section>
-
-      <!-- Right column -->
-      <aside class="grid">
-        <section class="card">
-          <h2>Abstract</h2>
-          <p style="margin-top:6px">
-            A neuro-symbolic SLAM system that encodes scene semantics hierarchically, reducing memory and compute while improving accuracy and speed. The pipeline supports both RGB-D and monocular input with DUSt3R depth priors and optimizes semantics using intra-/inter-level losses.
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>Resources</h2>
-          <ul>
-            <li><a href="assets/Article_Analysis.pptx" download>Slides (.pptx)</a></li>
-            <li><a href="assets/Article_C.pdf" target="_blank" rel="noopener">Article PDF</a></li>
-            <li><a href="assets/Transcript.txt" target="_blank" rel="noopener">Talk Transcript</a></li>
-          </ul>
-        </section>
-
-        <section class="card">
-          <h2>Key Highlights</h2>
-          <ul>
-            <li>Hierarchical semantics → O(log N) encoding</li>
-            <li>LLM + 3D generative priors for class structure</li>
-            <li>Unified RGB-D & monocular SLAM</li>
-            <li>Real-time rendering (2000–3000 FPS)</li>
-          </ul>
-        </section>
-
-        <section class="card">
-          <h2>Contact</h2>
-          <p style="margin-top:6px">
-            For questions, reach me at <a href="mailto:your.email@example.com">your.email@example.com</a>.
-          </p>
-        </section>
-      </aside>
-    </main>
-
-    <section class="panel" style="margin-top:8px">
-      <h2>Transcript (optional)</h2>
-      <p class="small" style="margin-top:6px">
-        If you prefer reading, add <code>assets/Transcript.txt</code> with your script. You can also use <code>assets/captions.vtt</code> for in-player captions.
-      </p>
-      <pre style="white-space:pre-wrap; margin:10px 0; font-size:14px; color:var(--muted)">
-[Add a brief transcript excerpt here. Replace this block with a short-summary or auto-generated transcript.]
-      </pre>
-    </section>
-
-    <footer>
-      © <span id="year"></span> Aamna Alshehhi • Built for GitHub Pages • <span id="copyState"></span>
-    </footer>
-  </div>
-
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Theme toggle (persists in localStorage)
-    const root = document.body;
-    const themeBtn = document.getElementById('themeBtn');
-    const saved = localStorage.getItem('theme');
-    if(saved === 'light'){ root.classList.add('light'); themeBtn.setAttribute('aria-pressed','true'); }
-    themeBtn.addEventListener('click', () => {
-      root.classList.toggle('light');
-      const light = root.classList.contains('light');
-      localStorage.setItem('theme', light ? 'light' : 'dark');
-      themeBtn.setAttribute('aria-pressed', light ? 'true' : 'false');
-    });
-
-    // Share button
-    const shareBtn = document.getElementById('shareBtn');
-    const copyState = document.getElementById('copyState');
-    shareBtn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      try{
-        await navigator.clipboard.writeText(location.href);
-        copyState.textContent = 'Link copied ✓';
-        copyState.className = 'success';
-        setTimeout(()=>{ copyState.textContent=''; }, 2200);
-      }catch{
-        copyState.textContent = 'Copy failed';
-        copyState.className = 'error';
-        setTimeout(()=>{ copyState.textContent=''; }, 2200);
-      }
-    });
-  </script>
-</body>
-</html>
+    @media (min-width:960px){ main{ grid-template-columns:1.3fr .7fr
