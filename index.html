@@ -1,69 +1,153 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hier-SLAM++ — Presentation | Aamna Alshehhi</title>
-  <meta name="description" content="Presentation website for Hier-SLAM++: Neuro-Symbolic Semantic SLAM with Hierarchical Gaussian Splatting." />
-  <meta name="theme-color" content="#0b1020" />
-  <style>
-    :root{
-      --bg:#0b1020; --text:#e6ecff; --muted:#9aa4c3; --panel:#111735; --border:#25305a;
-      --btn-bg:#1e2a4a; --btn-border:#3b4c7a; --btn-hover:#314a80; --accent:#a6f0ff;
-    }
-    body{
-      margin:0; font-family:system-ui,Inter,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:var(--bg); color:var(--text); line-height:1.55;
-    }
-    .container{max-width:920px; margin-inline:auto; padding:24px}
-    header{text-align:center; margin-bottom:16px}
-    h1{margin:0 0 5px; font-size:clamp(22px,3.5vw,32px)}
-    .sub{margin:0; color:var(--muted); font-size:15px}
-    .panel{
-      background:rgba(21,32,70,.9); border:1px solid var(--border); border-radius:14px; padding:14px;
-    }
-    .video-wrap{border-radius:10px; overflow:hidden; border:1px solid var(--border)}
-    video{width:100%; aspect-ratio:16/9; background:#000}
-    .btn{
-      display:inline-block; margin-top:18px; padding:12px 18px; border-radius:10px;
-      background:var(--btn-bg); border:1px solid var(--btn-border);
-      color:var(--accent); font-weight:700; text-decoration:none; transition:.2s;
-    }
-    .btn:hover{background:var(--btn-hover)}
-    footer{text-align:center; margin:26px 0 6px; font-size:12px; color:var(--muted)}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hier-SLAM++ — Presentation | Aamna Alshehhi</title>
+<meta name="theme-color" content="#0b1020" />
+<meta name="description" content="Presentation website for Hier-SLAM++: Neuro-Symbolic Semantic SLAM with Hierarchical Gaussian Splatting." />
+
+<style>
+  :root{
+    --bg:#0a0f1f; --bg2:#0d132a; --text:#eaf0ff; --muted:#9aa4c3; --card:rgba(255,255,255,.06);
+    --border:rgba(255,255,255,.12); --brand:#86a5ff; --accent:#a6f0ff;
+    --btn:#1d2b57; --btn-br:#4157a8; --btn-hover:#2b3e7a; --shadow:0 10px 40px rgba(30,60,150,.35);
+  }
+  .light{
+    --bg:#f6f7fb; --bg2:#eef1f8; --text:#0c1230; --muted:#5c678a; --card:#ffffff;
+    --border:#e5e9f5; --brand:#2d4fdd; --accent:#2b8fff;
+    --btn:#ffffff; --btn-br:#d6ddf2; --btn-hover:#f3f6ff; --shadow:0 10px 30px rgba(22,40,120,.12);
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--text); background:radial-gradient(1200px 600px at 20% -10%, #1b2a6a 0%, transparent 55%),
+                       radial-gradient(1000px 600px at 120% 10%, #0f5a84 0%, transparent 55%),
+                       linear-gradient(180deg, var(--bg), var(--bg2));
+  }
+
+  .container{max-width:1100px; margin:auto; padding:20px}
+  header{
+    position:relative; border:1px solid var(--border); border-radius:18px; overflow:hidden;
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    backdrop-filter: blur(8px);
+    box-shadow: var(--shadow);
+  }
+  .hero{
+    padding:28px 20px; display:flex; gap:18px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+  }
+  .title{ font-weight:800; letter-spacing:.2px; font-size: clamp(22px, 3.6vw, 34px) }
+  .sub{ margin-top:4px; color:var(--muted); font-size:14px }
+  .chips{ display:flex; gap:8px; margin-top:10px; flex-wrap:wrap }
+  .chip{ border:1px solid var(--border); padding:6px 10px; border-radius:999px; font-size:12px; color:var(--muted) }
+
+  .actions{ display:flex; gap:10px; align-items:center }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:11px 14px; border-radius:12px;
+    border:1px solid var(--btn-br); background:var(--btn); color:var(--accent); text-decoration:none; font-weight:700;
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+    box-shadow: var(--shadow);
+  }
+  .btn:hover{ transform: translateY(-1px); background:var(--btn-hover) }
+
+  .switch{
+    cursor:pointer; border:1px solid var(--btn-br); background:var(--btn); color:var(--muted);
+    border-radius:10px; padding:9px 12px; font-weight:600;
+  }
+
+  main{ display:grid; grid-template-columns:1fr; gap:18px; margin-top:18px }
+  @media (min-width:980px){ main{ grid-template-columns:1.35fr .65fr } }
+
+  .card{
+    border:1px solid var(--border); border-radius:18px; background:var(--card);
+    backdrop-filter: blur(8px); box-shadow: var(--shadow); padding:14px 14px 16px;
+  }
+
+  .video-wrap{ border:1px solid var(--border); border-radius:14px; overflow:hidden }
+  video{ width:100%; height:auto; background:#000; aspect-ratio:16/9; display:block }
+  h2{ margin:6px 0 10px; font-size:16px; letter-spacing:.2px }
+
+  ul{ margin:8px 0 0 18px }
+  li{ margin:6px 0 }
+  footer{ text-align:center; color:var(--muted); font-size:12px; margin:24px 0 4px }
+
+  /* Nice hover underline */
+  .link{ position:relative; text-decoration:none; color:var(--accent); }
+  .link::after{ content:""; position:absolute; left:0; bottom:-2px; width:100%; height:2px; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .2s }
+  .link:hover::after{ transform:scaleX(1) }
+</style>
 </head>
-
 <body>
-<div class="container">
+  <div class="container">
 
-  <header>
-    <h1>Hier-SLAM++ — Presentation</h1>
-    <p class="sub">ELEN755 — Cognitive Robotics | Aamna Alshehhi</p>
-  </header>
+    <!-- Header -->
+    <header>
+      <div class="hero">
+        <div>
+          <div class="title">Hier-SLAM++ — Neuro-Symbolic Semantic SLAM</div>
+          <div class="sub">ELEN755 • Cognitive Robotics • Presented by Aamna Alshehhi</div>
+          <div class="chips">
+            <span class="chip">Semantic SLAM</span>
+            <span class="chip">Neuro-Symbolic</span>
+            <span class="chip">RGB-D & Monocular</span>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="themeBtn" class="switch" aria-pressed="false" title="Toggle theme">🌗 Theme</button>
+          <a class="btn" href="assets/slides.pptx" download>📂 Slides</a>
+          <!-- If you rename your article to Article.pdf, change href below to assets/Article.pdf -->
+          <a class="btn" href="assets/Article.pdf" target="_blank" rel="noopener">📄 Article</a>
+        </div>
+      </div>
+    </header>
 
-  <main class="panel">
-    <div class="video-wrap">
-      <video controls preload="metadata" poster="assets/thumbnail.jpg" playsinline>
-        <source src="assets/presentation.mp4" type="video/mp4" />
-        Your browser does not support video playback.
-        <a href="assets/presentation.mp4">Download video</a>.
-      </video>
-    </div>
+    <!-- Content -->
+    <main>
+      <!-- Video -->
+      <section class="card">
+        <h2>Presentation</h2>
+        <div class="video-wrap">
+          <video controls preload="metadata" poster="assets/thumbnail.jpg" playsinline aria-label="Hier-SLAM++ Presentation Video">
+            <source src="assets/presentation.mp4" type="video/mp4" />
+            Your browser does not support HTML5 video. You can <a class="link" href="assets/presentation.mp4">download the video</a>.
+          </video>
+        </div>
+      </section>
 
-    <p style="text-align:center">
-      <a class="btn" href="assets/slides.pptx" download>📂 Download Slides</a>
-    </p>
-  </main>
+      <!-- Right column: quick info -->
+      <aside class="card">
+        <h2>Highlights</h2>
+        <ul>
+          <li>Hierarchical semantics → <strong>O(log N)</strong> encoding</li>
+          <li>LLMs + 3D priors guide semantic structure</li>
+          <li>Unified <strong>RGB-D & monocular</strong> pipeline</li>
+          <li>Real-time mapping & rendering</li>
+        </ul>
+      </aside>
+    </main>
 
-  <footer>
-    © <span id="year"></span> Aamna Alshehhi — Hier-SLAM++
-  </footer>
-
-</div>
+    <footer>
+      © <span id="year"></span> Aamna Alshehhi · Built for GitHub Pages
+    </footer>
+  </div>
 
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Theme toggle (persists)
+  const root = document.body;
+  const btn = document.getElementById('themeBtn');
+  const saved = localStorage.getItem('theme');
+  if(saved === 'light'){ root.classList.add('light'); btn.setAttribute('aria-pressed','true'); }
+  btn.addEventListener('click', ()=>{
+    root.classList.toggle('light');
+    const isLight = root.classList.contains('light');
+    btn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
 </script>
 </body>
 </html>
